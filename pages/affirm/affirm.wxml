@@ -1,0 +1,7 @@
+<!--affirm.wxml-->
+<view class="container">
+    <!--header  -->
+    <view class="header">
+            确认订单
+    </view>
+</view>

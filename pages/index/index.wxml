@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<view class="container">
+<!--头部  -->
+  <view class="header">
+    <!--呼叫  -->
+    <view class="callService">
+        <image class="headerImg-1" src="../../imgs/serve.png"></image>
+        <image class="headerImg-2" src="../../imgs/local.png"></image>
+        <text class="headerText-1">大厅102</text>
+    </view>
+    <!--其他按钮  -->
+    <view class="otherBtns">
+        <image src="../../imgs/reload.png" class="headerImg-3"></image>
+        <image src="../../imgs/search.png" class="headerImg-4"></image>
+        <image src="../../imgs/orderMenu.png" class="headerImg-5"></image>
+    </view>
+  </view>
+<!--内容  -->
+  <view class="content">
+    <!--左边菜品种类栏  -->
+    <scroll-view class="catesList" scroll-y="true" scroll-into-view="{{leftId}}">
+        <view wx:for="{{catesList}}" wx:key="*this" data-num="{{index}}" class="catesName {{_num==index?'catesNameActive':''}}" bindtap="menuClick" id="name{{index}}">{{item}}</view>
+    </scroll-view>
+    <!--右边具体菜品栏  -->
+    <scroll-view class="goodsList" scroll-y="true" bindscroll="scrollRight" scroll-into-view="{{nowId}}">
+            <view wx:for="{{catesList}}" wx:key="*this" >
+                <view class="classname" id="name{{index}}">
+                    <view class="goodsName">
+                        <text>{{item}}</text>
+                    </view>
+                    <view class="goodsInner" wx:for="{{goodsList}}" wx:key="*this" >
+                        <image src="../../imgs/2.jpg" class="goodsImg"></image>
+                        <view class="goodsInfo">
+                            <text class="text1">{{item.name}}</text>
+                            <text class="text2">￥{{item.price}}</text>
+                            <text class="text3">会员价:￥{{item.price}}</text>
+                        </view>
+                        <image src="../../imgs/decrease.png" class="deBtn {{item.count>=1?'show':'hidden'}}" bindtap="deFood" id="food{{item.id}}"></image>
+                        <text class="num {{item.count>=1?'show':'hidden'}}">{{item.count}}</text>
+                        <image src="../../imgs/add.png" class="addBtn" bindtap="addFood" id="food{{item.id}}"></image>
+                    </view>
+                </view>
+            </view>
+    </scroll-view>
+  </view>
+  <!--购物车  -->
+  <view class="footer">
+    <image src="../../imgs/shopCart.png" class="footerImg-1"></image>
+    <text class="footerText-1">
+        ￥{{100}}
+    </text>
+    <view class="submitBtn" bindtap="toAffirm">
+        确认
+    </view>
+  </view>
+</view>
